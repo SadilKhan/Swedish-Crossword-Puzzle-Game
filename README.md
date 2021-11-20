@@ -24,5 +24,5 @@ $ java Main.Java
 </ul>
 
 <li> Once correct txt file is chosen, the game starts </li>
-<a href="url"><img src="https://github.com/SadilKhan/Swedish-Crossword-Puzzle-Game/blob/main/Images/gameUI.png" align="center" height="800" width="1000" ></a> </li>
+<a href="url"><img src="https://github.com/SadilKhan/Swedish-Crossword-Puzzle-Game/blob/main/Images/gameUI.png" align="center" height="600" width="750" ></a> </li>
 
