@@ -2,9 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.Random;
 
-public class Game implements ActionListener, FocusListener{
+public class Game implements ActionListener, FocusListener,GameInterface{
 	/* Class for Main Puzzle Game */
 	
 	private int row; // Number of Rows in the Playing Field.
@@ -56,7 +55,7 @@ public class Game implements ActionListener, FocusListener{
 		
 	}
 	
-	private void createGameFrame() {
+	public void createGameFrame() {
 		/* Create a JFrame upon which we will add component for UI */
 		
 		gameFrame=new JFrame("Swedish-Style Crossword Puzzle");
@@ -66,7 +65,7 @@ public class Game implements ActionListener, FocusListener{
 		gameFrame.setLayout(null);
 		gameFrame.setLocationRelativeTo(null);// Makes the frame appear in the center of the screen.
 	}
-	private void createStatement() {
+	public void createStatement() {
 		
 		/* Creates the left panel for clues . It contains one Main Panel and three sub Panels added to 
 		 the main Panel. The three sub-panels are firstPanel(which contains only one label) and acrossPanel
@@ -105,7 +104,7 @@ public class Game implements ActionListener, FocusListener{
 		
 	}
 	
-	private void createCheck() {
+	public void createCheck() {
 		/* Creates the bottom gray squares and check button. It has one Main Panel and two panels. One for the 
 		 squares and one for the button */
 		
@@ -150,7 +149,7 @@ public class Game implements ActionListener, FocusListener{
 		
 	}
 	
-	private void createField() {
+	public void createField() {
 		
 		/* Creates the Playing field. Contains one Main Panel and row x Column numbers of text fields with
 		 modified on-screen keyboard attached with each one of them.
