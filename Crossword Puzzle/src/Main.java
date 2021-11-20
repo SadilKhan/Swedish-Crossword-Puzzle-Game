@@ -1,11 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.awt.event.*;
 
 public class Main extends InfoExtractor implements ActionListener {
+	
+	/* The Txt file opener GUI */
 	
 	JButton fileOpenerButton;
 	JFrame fileOpenerFrame;
