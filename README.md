@@ -1,2 +1,4 @@
-# Swedish-Crossword-Puzzle-Game
-Swedish Style crossword Puzzle game using Java
+# Tutorial
+
+1. Download the repository
+` $ git clone `
