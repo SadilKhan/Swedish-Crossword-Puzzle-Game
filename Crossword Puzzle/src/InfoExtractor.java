@@ -1,23 +1,17 @@
 import java.io.*;
 import java.util.ArrayList;
-
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 
 public class InfoExtractor {
 	
 	// Custom Class to extract relevant information from txt file
 	
-	BufferedReader txtFile;
+	BufferedReader txtFile; 
 	JFrame mainFrame;
 
-	public static void main(String[] args) {
-		
-
-	}
 	
 	public void TxtExtractor(String path) throws IOException {
+		// The method to extract information from txt file
 		
 		BufferedReader file=new BufferedReader(new FileReader(new File(path)));// Read the TXT file
 
@@ -27,7 +21,7 @@ public class InfoExtractor {
 		int row=Integer.parseInt(shapeInfo[0]); // Get the number of rows of the puzzle
 		int column=Integer.parseInt(shapeInfo[1]); // Get the number of columns of the puzzle
 		
-		// Extract the field types
+		// Extract the box types
 		String[][] field= new String[row][column];
 		// The clues in the Across Column
 		ArrayList<String> acrossClues = new ArrayList<String>();
@@ -55,19 +49,12 @@ public class InfoExtractor {
 		
 		}
 		catch(Exception e){
-			 JOptionPane.showMessageDialog(null, "Wrong Txt file!","Warning",JOptionPane.WARNING_MESSAGE);
 			// If wrong txt is provided then open the Main File Opener again.
+			JOptionPane.showMessageDialog(null, "Wrong Txt file!","Warning",JOptionPane.WARNING_MESSAGE);
 			Main mainWindow=new Main();
 			mainWindow.createOpenerUI();
 			
 		}
-		
-		
-		
-	}
-	
-
-	public void gameUI() {
 		
 		
 		
