@@ -125,9 +125,10 @@ public class Main extends InfoExtractor {
 				if (e.getSource()==gameStartButton) {            	
 	            	String getTexts=solutionField.getText();
 	            	
-	            	if (getTexts!=null) {solution=getTexts;}
-	            	
-	            	System.out.println(solution);
+	            	if (!getTexts.matches("")) 
+	            	{
+	            		solution=getTexts;
+	            	}
 
 	         	   //Extract Information
 	         	   try {
