@@ -12,7 +12,7 @@ $ cd 'Crossword Puzzle'/src
 $ javac Main.java
 $ java Main.Java 
 ```
-  <li> <p> The following window will open. Press <code> Open File </code> to select a txt file.</p>
+  <li> <p> The following window will open. Press <code> Open File </code> to select a txt file. Enter the solution word in text box. This solution word will be used in final evalutation</p>
 <a href="url"><img src="https://github.com/SadilKhan/Swedish-Crossword-Puzzle-Game/blob/main/Images/File%20Opener%20Window.png" align="center" height="400" width="400" ></a> </li>
 
 <li>If any other file is chosen except a txt file or wrong txt file is chosen. The following warning message will appear. Press <code> OK </code> and select correct
@@ -25,4 +25,6 @@ $ java Main.Java
 
 <li> Once correct txt file is chosen, the game starts </li>
 <a href="url"><img src="https://github.com/SadilKhan/Swedish-Crossword-Puzzle-Game/blob/main/Images/gameUI.png" align="center" height="600" width="750" ></a> </li>
+
+<li> After, the user fills the grey boxes underneath, press <code>Check</code> button to check whether the word in the grey boxes is correct.</li>
 
