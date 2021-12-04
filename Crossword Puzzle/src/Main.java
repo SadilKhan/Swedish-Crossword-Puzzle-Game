@@ -39,12 +39,15 @@ public class Main extends InfoExtractor {
 		//Panels
 		JPanel welcPanel=new JPanel(); // Panel for Welcome label
 		welcPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		welcPanel.setBackground(new Color(73,172,117));
 		
 		JPanel openPanel=new JPanel(); // Panel for Button
 		openPanel.setLayout(new FlowLayout(FlowLayout.CENTER,100,0));
+		openPanel.setBackground(new Color(73,172,117));
 		
 		JPanel solPanel=new JPanel(); // Panel for Solution
 		solPanel.setLayout(new FlowLayout(FlowLayout.CENTER,0,0));
+		solPanel.setBackground(new Color(73,172,117));
 		
 		// Labels
 		JLabel fileOpenerLabel=new JLabel("Welcome to the Crossword Puzzle Game");
@@ -56,14 +59,17 @@ public class Main extends InfoExtractor {
 		fileOpenerButton=new JButton("Open File");
 		fileOpenerButton.setSize(10,10);
 		fileOpenerButton.setFocusable(false);
+		fileOpenerButton.setToolTipText("Choose a txt file which will be used to build the game");
 		
 		gameStartButton=new JButton("Start Game");
 		gameStartButton.setSize(10,10);
 		gameStartButton.setFocusable(false);
+		gameStartButton.setToolTipText("Start the game");
 		
 		// Solution Textfield
 		solutionField=new JTextField();
 		solutionField.setPreferredSize(new Dimension(300,50));
+		solutionField.setToolTipText("Enter the solution word which will be used for final evaluation.");
 		
 		// Add the label and the button in the panel
 		openPanel.add(helper);
