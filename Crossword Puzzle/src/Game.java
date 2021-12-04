@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Game implements ActionListener, FocusListener,GameInterface{
 	/* Class for Main Puzzle Game */
@@ -17,14 +18,16 @@ public class Game implements ActionListener, FocusListener,GameInterface{
 	ArrayList<JLabel> allLabels; // All the labels in the clues panel.
 	int totalGraySquare=0; // Total number of Gray Squares.
 	JButton checkButton; // Button for checking.
+	String solution; // The solution word/phrase which will be checked finally
 	
-	Game(int r, int c, String[][] f,ArrayList<String> a,ArrayList<String> d) {
+	Game(int r, int c, String[][] f,ArrayList<String> a,ArrayList<String> d,String s) {
 		/* Constructor */
 		row=r;
 		column=c;
 		field=f;
 		acrossClues=a;
 		downClues=d;
+		solution=s;
 		
 		// Start the UI
 		
@@ -71,6 +74,7 @@ public class Game implements ActionListener, FocusListener,GameInterface{
 		 the main Panel. The three sub-panels are firstPanel(which contains only one label) and acrossPanel
 		 for across clues and downPanel for down clues
 		 */
+	
 		
 		// Main Panel
 		JPanel statementPanel=new JPanel();
@@ -78,6 +82,7 @@ public class Game implements ActionListener, FocusListener,GameInterface{
 		statementPanel.setBounds(10,10,250,700);
 		statementPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		//statementPanel.setBackground(Color.red);
+
 		
 		// The First Panel which contains only one label.
 		JPanel firstPanel=new JPanel();
@@ -92,10 +97,12 @@ public class Game implements ActionListener, FocusListener,GameInterface{
 		// Down Panel for down statements
 		JPanel downPanel=new Panel(downClues).aPanel;
 		
+		
 		// Add the sub-panels in the Main Panel statementPanel
 		statementPanel.add(firstPanel);
 		statementPanel.add(acrossPanel);
 		statementPanel.add(downPanel);
+		//statementPanel.add(stScrollPane);
 		
 		
 		// Add the Main Panel in the main Frame gameFrame
@@ -121,6 +128,7 @@ public class Game implements ActionListener, FocusListener,GameInterface{
 			TextBox tb=new TextBox();
 			tb.textBox.setPreferredSize(new Dimension(50,50));
 			tb.textBox.setBackground(Color.gray);
+			tb.textBox.setToolTipText("Enter the character from the gray boxes in the playing field");
 			// When a text box is selected, we need to dispose the other keyboard
 			tb.textBox.addFocusListener(this); 
 			// Add text boxes in the sub-panel for gray boxes
@@ -131,11 +139,13 @@ public class Game implements ActionListener, FocusListener,GameInterface{
 		// Add the text field to textBoxes variable.
 		textBoxes.add(boxes);
 		
+		
 		// The sub panel for the button.
 		JPanel checkButtonPanel= new JPanel(new FlowLayout(FlowLayout.CENTER));
 		checkButton=new JButton("Check"); // The check button
 		checkButton.setFocusable(false); // Gets rid of the border
 		checkButton.setSize(10,10);
+		checkButton.setToolTipText("Click here to check whether your solution is right");
 		checkButton.addActionListener(this);
 		checkButtonPanel.add(checkButton);
 		checkPanel.add(checkButtonPanel);
@@ -181,22 +191,27 @@ public class Game implements ActionListener, FocusListener,GameInterface{
 					tb=new TextBox(hintKeys);// Create an object of TextBox object with modified keyboard.
 					tb.textBox.setBackground(new Color(37,150,190));
 					tb.textBox.addFocusListener(this);// When a text box is selected, dispose the other keyboard
+					tb.textBox.setToolTipText(String.format("Help Squares. The possible characters are %s", Arrays.toString(hintKeys) ));
 				}else if(field[i][j].contains("X")) {
 					/* Black Boxes. Contains no keyboard*/
 					tb=new TextBox();
 					tb.textBox.setBackground(Color.black);
 					tb.textBox.setEnabled(false);// Disable the text field
 					tb.textBoxEnabled=false;
+					tb.textBox.setToolTipText("You can't enter any letter here");
 					tb.textBox.removeMouseListener(tb); // mouse click on the black boxes will be ignored
 				}else if(field[i][j].contains("S")) {
 					/*Special Boxes*/
 					tb=new TextBox();
 					tb.textBox.setBackground(Color.gray);
 					tb.textBox.addFocusListener(this);
+					tb.textBox.setToolTipText("You need to collect the characters at these squares to form a special word "
+							+ "(or solution) which you can enter below the playing field");
 					totalGraySquare+=1; // When a gray box is created, increase the number of gray squares
 				}else {
 					/*Normal Boxes*/
 					tb=new TextBox();
+					tb.textBox.setToolTipText("Normal Boxes. On-Screen Keyboard will appear when you click on the box");
 					tb.textBox.addFocusListener(this);
 				}
 				
@@ -256,7 +271,33 @@ public class Game implements ActionListener, FocusListener,GameInterface{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
+		
+		if (e.getSource()==checkButton) {
+			String userSolution="";
+			for(int i=0;i<totalGraySquare;i++) {
+				TextBox tempTextField=textBoxes.get(textBoxes.size()-1).get(i);
+				String text=tempTextField.textBox.getText().toLowerCase();
+				if (text!=null) {
+					userSolution+=text;
+					
+				}else {
+					ImageIcon winnerImage=new ImageIcon("/Users/ryzenx/Downloads/wrong_answer.png");
+					JOptionPane.showMessageDialog(null, "Wrong Answer","Wrong Answer",JOptionPane.WARNING_MESSAGE,winnerImage);
+				}
+				
+			}
+			
+			if (solution.matches(userSolution)) {
+				ImageIcon winnerImage=new ImageIcon("/Users/ryzenx/Downloads/winner.png");
+				JOptionPane.showMessageDialog(null, "Correct Answer","Congratultions",JOptionPane.PLAIN_MESSAGE,winnerImage);
+			}
+			else {
+				ImageIcon winnerImage=new ImageIcon("/Users/ryzenx/Downloads/wrong_answer.png");
+				JOptionPane.showMessageDialog(null, "Wrong Answer","Wrong Answer",JOptionPane.WARNING_MESSAGE,winnerImage);
+			}
+			
+		}
 		
 		
 	}
