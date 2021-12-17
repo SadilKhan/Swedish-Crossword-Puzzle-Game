@@ -280,8 +280,19 @@ public class Game implements ActionListener, FocusListener,GameInterface{
 		
 		
 		if (e.getSource()==checkButton) {
+			/* The evaluation button.
+			 * Returns an Option Pane for winning and losing
+			 * */
+			// Get the directory where images are saved
 			Path currentRelativePath = Paths.get("");
-			String pathString = currentRelativePath.toAbsolutePath().toString()+"/Files/";
+			String pathString = currentRelativePath.toAbsolutePath().toString();
+
+			if (!pathString.contains("src")) {
+				pathString=pathString+"/src/Files/";
+			}else
+			{
+				pathString=pathString+"/Files/";
+			}
 			
 			String userSolution="";
 			for(int i=0;i<totalGraySquare;i++) {
