@@ -14,11 +14,11 @@ public class Main extends InfoExtractor implements MainInterface {
 	String solution="southpark";
 	String fileName;
 	// Get current Directory for files
-	Path currentRelativePath = Paths.get("");
-	String pathString = currentRelativePath.toAbsolutePath().toString()+"/Files/";
+	static Path currentRelativePath = Paths.get("");
+	String pathString = currentRelativePath.toAbsolutePath().toString();
+	
 	
 	public static void main(String[] args) {
-		
 		
 		// Initialize the UI
 		Main mainWindow=new Main();
@@ -29,8 +29,15 @@ public class Main extends InfoExtractor implements MainInterface {
 	
 	public void createOpenerUI() {
 		
+		if (!pathString.contains("src")) {
+			pathString=pathString+"/src/Files/";
+		}else
+		{
+			pathString=pathString+"/Files/";
+		}
 		
-		
+		System.out.println(pathString);
+
 		// Customize Frame
 		fileOpenerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fileOpenerFrame.setSize(400,400);
